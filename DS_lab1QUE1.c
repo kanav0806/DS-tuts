@@ -1,0 +1,106 @@
+#include <stdio.h>
+int arr[10], n = 0;
+
+void create() {
+    int i;
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    printf("Enter elements:\n");
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+}
+
+void display() {
+    int i;
+    if (n == 0) {
+        printf("Array is empty.\n");
+        return;
+    }
+    printf("Array elements: ");
+    for (i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+void insert() {
+    int pos, val, i;
+    if (n >= 100) {
+        printf("Array is full!\n");
+        return;
+    }
+    printf("Enter position to insert (1 to %d): ", n + 1);
+    scanf("%d", &pos);
+    if (pos < 1 || pos > n + 1) {
+        printf("Invalid position!\n");
+        return;
+    }
+    printf("Enter value to insert: ");
+    scanf("%d", &val);
+
+    for (i = n; i >= pos; i--) {
+        arr[i] = arr[i - 1];
+    }
+    arr[pos - 1] = val;
+    n++;
+    printf("Inserted %d at position %d\n", val, pos);
+}
+
+void delete() {
+    int pos, i;
+    if (n == 0) {
+        printf("Array is empty.\n");
+        return;
+    }
+    printf("Enter position to delete (1 to %d): ", n);
+    scanf("%d", &pos);
+    if (pos < 1 || pos > n) {
+        printf("Invalid position!\n");
+        return;
+    }
+    printf("Deleted element: %d\n", arr[pos - 1]);
+    for (i = pos - 1; i < n - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    n--;
+}
+
+void linearSearch() {
+    int key, i, found = 0;
+    if (n == 0) {
+        printf("Array is empty.\n");
+        return;
+    }
+    printf("Enter element to search: ");
+    scanf("%d", &key);
+    for (i = 0; i < n; i++) {
+        if (arr[i] == key) {
+            printf("Element %d found at position %d\n", key, i + 1);
+            found = 1;
+            break;
+        }
+    }
+    if (!found) {
+        printf("Element %d not found\n", key);
+    }
+}
+
+int main() {
+    int choice;
+    while (1) {
+        printf("\nMenu:\n1. Create\n2. Display\n3. Insert\n4. Delete\n5. Linear Search\n6. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1: create(); break;
+            case 2: display(); break;
+            case 3: insert(); break;
+            case 4: delete(); break;
+            case 5: linearSearch(); break;
+            case 6: return 0;
+            default: printf("Invalid choice! Try again.\n");
+        }
+    }
+}
