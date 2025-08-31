@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool isSubstring(string s, string sub) {
+return s.find(sub) != string::npos;
+}
+
+bool canSplit(string str) {
+int n = str.size();
+
+// Try all ways to split string into 3 parts
+for (int i = 1; i < n; i++) {
+for (int j = i + 1; j < n; j++) {
+string part1 = str.substr(0, i);
+string part2 = str.substr(i, j - i);
+string part3 = str.substr(j);
+
+// check if any part is substring of other two
+if ((isSubstring(part2, part1) && isSubstring(part3, part1)) ||
+(isSubstring(part1, part2) && isSubstring(part3, part2)) ||
+(isSubstring(part1, part3) && isSubstring(part2, part3))) {
+return true;
+}
+}
+
+}
+return false;
+}
+
+int main() {
+string str = "abab"; // Example input
+
+cout << "String: " << str << endl;
+
+if (canSplit(str))
+cout << "YES, it can be split into 3 parts with one substring common.\n";
+else
+cout << "NO, such a split is not possible.\n";
+
+return 0;
+}
