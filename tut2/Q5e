@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+int n = 4;
+int compact[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+cout << "Compact storage: ";
+for (int i = 0; i < 10; i++) cout << compact[i] << " ";
+cout << "\n\nFull matrix:\n";
+
+int k = 0;
+int A[4][4] = {0};
+
+// fill lower triangular
+
+for (int i = 0; i < n; i++) {
+for (int j = 0; j <= i; j++) {
+A[i][j] = compact[k++];
+A[j][i] = A[i][j]; // mirror to upper
+}
+}
+
+// print
+for (int i = 0; i < n; i++) {
+for (int j = 0; j < n; j++) cout << A[i][j] << " ";
+cout << "\n";
+}
+return 0;
+}
