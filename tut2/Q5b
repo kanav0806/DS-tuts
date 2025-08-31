@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+int n = 4;
+// compact storage: main diag + lower diag + upper diag
+int compact[3 * n - 2] = {4, 2, 1, 5, 3, 7, 6, 8, 9, 10};
+
+cout << "Compact storage: ";
+for (int i = 0; i < 3 * n - 2; i++) cout << compact[i] << " ";
+cout << "\n\nFull matrix:\n";
+
+int k = 0;
+for (int i = 0; i < n; i++) {
+
+for (int j = 0; j < n; j++) {
+if (i == j) cout << compact[n + i - 1] << " "; // main diagonal
+else if (i == j + 1) cout << compact[i - 1] << " "; // lower diag
+else if (j == i + 1) cout << compact[2 * n + i - 1] << " "; // upper diag
+else cout << 0 << " ";
+}
+cout << "\n";
+}
+return 0;
+}
