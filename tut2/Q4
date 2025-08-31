@@ -1,0 +1,52 @@
+#include <iostream>
+#include <algorithm>
+#include <string>
+using namespace std;
+
+// (a) Concatenate
+void concatenate(string s1, string s2) {
+cout << "Concatenated: " << s1 + s2 << endl;
+}
+
+// (b) Reverse
+void reverseString(string s) {
+reverse(s.begin(), s.end());
+cout << "Reversed: " << s << endl;
+}
+
+// (c) Delete vowels
+void deleteVowels(string s) {
+string result = "";
+for (char c : s) {
+if (c!='a' && c!='e' && c!='i' && c!='o' && c!='u' &&
+
+c!='A' && c!='E' && c!='I' && c!='O' && c!='U') {
+result += c;
+}
+}
+cout << "Without Vowels: " << result << endl;
+}
+
+// (d) Sort alphabetically
+void sortString(string s) {
+sort(s.begin(), s.end());
+cout << "Sorted: " << s << endl;
+}
+
+// (e) Uppercase → Lowercase
+void toLowerCase(string s) {
+for (char &c : s) c = tolower(c);
+cout << "Lowercase: " << s << endl;
+}
+
+int main() {
+string s1 = "Hello", s2 = "World";
+concatenate(s1, s2);
+
+reverseString("DataStructures");
+deleteVowels("HelloWorld");
+sortString("dcba");
+toLowerCase("HeLLoWORLD");
+
+return 0;
+}
