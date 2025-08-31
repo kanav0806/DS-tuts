@@ -1,0 +1,32 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+bool areAnagrams(string str1, string str2) {
+// If lengths differ, they cannot be anagrams
+if (str1.length() != str2.length())
+return false;
+
+// Sort both strings
+sort(str1.begin(), str1.end());
+sort(str2.begin(), str2.end());
+
+// Compare
+return str1 == str2;
+}
+
+int main() {
+string str1 = "listen";
+string str2 = "silent";
+
+cout << "String 1: " << str1 << endl;
+cout << "String 2: " << str2 << endl;
+
+if (areAnagrams(str1, str2))
+
+cout << "YES, the strings are anagrams.\n";
+else
+cout << "NO, the strings are not anagrams.\n";
+
+return 0;
+}
